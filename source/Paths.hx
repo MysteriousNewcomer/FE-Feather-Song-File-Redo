@@ -299,7 +299,41 @@ class Paths
 		var file:Sound = returnSound('music', key, library);
 		return file;
 	}
-
+	
+	/*
+	* NEW SONG FILE FORMAT
+	*
+	* "diff" allows you to add remixes of a song under the same folder, for example, an erect remix.
+	*
+	* Opponent & Player Voices are separate to add some quality of life to the music, especially during duels
+	* when you're missing like fucking crazy for some reason.
+	*/
+	inline static public function voicesPlayer(song:String, diff:String = 'normal'):Any
+	{
+		var songKey:String = '${CoolUtil.swapSpaceDash(song.toLowerCase())}/Voices-${diff}';
+		var voices = returnSound('songs', songKey);
+		return voices;
+	}
+	
+	inline static public function voicesOpp(song:String, diff:String = 'normal'):Any
+	{
+		var songKey:String = '${CoolUtil.swapSpaceDash(song.toLowerCase())}/VoicesOpp-${diff}';
+		var voices = returnSound('songs', songKey);
+		return voices;
+	}
+	
+	inline static public function instNew(song:String, diff:String = 'normal'):Any
+	{
+		var songKey:String = '${CoolUtil.swapSpaceDash(song.toLowerCase())}/Inst-${diff}';
+		var inst = returnSound('songs', songKey);
+		return inst;
+	}
+	
+	/*
+	* LEGACY SONG FORMATS
+	*
+	* The original engine's song format for those that would rather use this.
+	*/
 	inline static public function voices(song:String):Any
 	{
 		var songKey:String = '${CoolUtil.swapSpaceDash(song.toLowerCase())}/Voices';
