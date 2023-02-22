@@ -70,7 +70,7 @@ class PlayState extends MusicBeatState
 	public static var songLength:Float = 0;
 	public static var vocals:FlxSound;
 	public static var bf_vocals:FlxSound;
-	public static var opp_vocals;FlxSound;
+	public static var opp_vocals:FlxSound;
 	public static var songMusicNew:FlxSound;
 
 	public var generatedMusic:Bool = false;
