@@ -246,7 +246,7 @@ class OriginalChartingState extends MusicBeatState
 			}
 		};
 
-		var check_mute_vocals = new FlxUICheckBox(check_mute_inst.x + 120, check_mute_inst.y - 5, null, null, "Mute Vocals (in editor)", 100);
+		var check_mute_vocals = new FlxUICheckBox(check_mute_inst.x + 120, check_mute_inst.y - 5, null, null, "Mute Vocals (in editor) [LEGACY]", 100);
 		check_mute_vocals.checked = false;
 		check_mute_vocals.callback = function()
 		{
@@ -259,6 +259,38 @@ class OriginalChartingState extends MusicBeatState
 
 				vocals.volume = vol;
 			}
+		};
+		
+		var check_mute_vocals_bf = new FlxUICheckBox(check_mute_inst.x + 120, check_mute_inst.y - 25, null, null, "Mute Player Vocals (in editor)", 100);
+		check_mute_vocals_bf.checked = false;
+		check_mute_vocals_bf.callback = function()
+		{
+			if (bf_vocals != null)
+			{
+				var vol:Float = 1;
+
+				if (check_mute_vocals_bf.checked)
+					vol = 0;
+
+				bf_vocals.volume = vol;
+			}
+		};
+
+		var check_mute_vocals_opp = new FlxUICheckBox(check_mute_vocals_bf.x, check_mute_inst.y + 45, null, null, "Mute Opponent Vocals (in editor)", 100);
+		check_mute_vocals_opp.checked = false;
+		check_mute_vocals_opp.callback = function()
+		{
+			if (opp_vocals != null)
+			{
+				var volOpp:Float = 1;
+
+				if (check_mute_vocals_opp.checked)
+					volOpp = 0;
+
+				opp_vocals.volume = volOpp;
+
+			}
+
 		};
 
 		var loadAutosaveBtn:FlxButton = new FlxButton(reloadSongJson.x, reloadSongJson.y + 30, 'load autosave', loadAutosave);
@@ -328,12 +360,14 @@ class OriginalChartingState extends MusicBeatState
 		playTicksBf = new FlxUICheckBox(check_mute_inst.x, check_mute_inst.y + 25, null, null, 'Play Hitsounds (Boyfriend - in editor)', 100);
 		playTicksBf.checked = false;
 
-		playTicksDad = new FlxUICheckBox(check_mute_inst.x + 120, playTicksBf.y, null, null, 'Play Hitsounds (Opponent - in editor)', 100);
+		playTicksDad = new FlxUICheckBox(check_mute_inst.x, playTicksBf.y + 32, null, null, 'Play Hitsounds (Opponent - in editor)', 100);
 		playTicksDad.checked = false;
 
 		tab_group_song.add(check_voices);
 		tab_group_song.add(check_mute_inst);
 		tab_group_song.add(check_mute_vocals);
+		tab_group_song.add(check_mute_vocals_bf);
+		tab_group_song.add(check_mute_vocals_opp);
 		tab_group_song.add(stepperBPM);
 		tab_group_song.add(stepperSpeed);
 		tab_group_song.add(saveButton);
