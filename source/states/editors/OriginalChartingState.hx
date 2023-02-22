@@ -226,13 +226,24 @@ class OriginalChartingState extends MusicBeatState
 		check_mute_inst.checked = false;
 		check_mute_inst.callback = function()
 		{
-			var vol:Float = 1;
+			if (songMusic != null)
+			{
+				var vol:Float = 1;
 
-			if (check_mute_inst.checked)
-				vol = 0;
+				if (check_mute_inst.checked)
+					vol = 0;
 
-			songMusic.volume = vol;
-			songMusicNew.volume = vol;
+				songMusic.volume = vol;
+			}
+			else
+			{
+				var vol:Float = 1;
+				
+				if (check_mute_inst.checked)
+					vol = 0;
+					
+				songMusicNew.volume = vol;
+			}
 		};
 
 		var check_mute_vocals = new FlxUICheckBox(check_mute_inst.x + 120, check_mute_inst.y - 5, null, null, "Mute Vocals (in editor)", 100);
