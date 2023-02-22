@@ -569,7 +569,7 @@ class OriginalChartingState extends MusicBeatState
 		FlxG.sound.list.add(vocals);
 
 		songMusic.play();
-		songMusic.play();
+		songMusicNew.play();
 		bf_vocals.play();
 		opp_vocals.play();
 		vocals.play();
