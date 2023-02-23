@@ -1384,7 +1384,7 @@ class PlayState extends MusicBeatState
 
 			#if desktop
 			// Song duration in a float, useful for the time left feature
-			if (songMusic != null)
+			if (SONG.instType == "Legacy")
 				songLength = songMusic.length;
 			else
 				songLength = songMusicNew.length;
@@ -1417,8 +1417,10 @@ class PlayState extends MusicBeatState
 		// Updating Discord Rich Presence.
 		updateRPC(false);
 
-		songMusic = new FlxSound().loadEmbedded(Paths.inst(SONG.song), false, true);
-		songMusicNew = new FlxSound().loadEmbedded(Paths.instNew(SONG.song, CoolUtil.difficultyString.toLowerCase()), false, true);
+		if (SONG.instType == "Legacy")
+			songMusic = new FlxSound().loadEmbedded(Paths.inst(SONG.song), false, true);
+		else
+			songMusicNew = new FlxSound().loadEmbedded(Paths.instNew(SONG.song, CoolUtil.difficultyString.toLowerCase()), false, true);
 
 		if (SONG.needsVoices)
 		{
@@ -1433,8 +1435,7 @@ class PlayState extends MusicBeatState
 			opp_vocals = new FlxSound();
 		}
 
-		FlxG.sound.list.add(songMusic);
-		FlxG.sound.list.add(songMusicNew);
+		FlxG.sound.list.add((SONG.instType == "Legacy") ? songMusic : songMusicNew);
 		FlxG.sound.list.add(vocals);
 		FlxG.sound.list.add(bf_vocals);
 		FlxG.sound.list.add(opp_vocals);
@@ -1533,7 +1534,7 @@ class PlayState extends MusicBeatState
 			vocals.pause();
 			bf_vocals.pause();
 			opp_vocals.pause();
-			if (songMusic != null)
+			if (SONG.instType == "Legacy")
 				Conductor.songPosition = songMusic.time;
 			else
 				Conductor.songPosition = songMusic.time;
