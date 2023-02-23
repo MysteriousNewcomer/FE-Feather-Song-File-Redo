@@ -11,6 +11,7 @@ class Song
 	public var notes:Array<SwagSection>;
 	public var bpm:Float;
 	public var needsVoices:Bool = true;
+	public var instType:String = "Legacy";
 	public var speed:Float = 1;
 
 	public var player1:String = 'bf';
@@ -54,6 +55,7 @@ class Song
 				noteSkin: "",
 				splashSkin: "noteSplashes",
 				needsVoices: false,
+				instType: "Legacy",
 				validScore: false,
 				assetModifier: "base"
 			};
@@ -75,6 +77,7 @@ class Song
 				splashSkin: oldSong.splashSkin,
 				noteSkin: oldSong.noteSkin,
 				needsVoices: oldSong.needsVoices,
+				instType: oldSong.instType,
 				validScore: true,
 				assetModifier: oldSong.assetModifier,
 			};
